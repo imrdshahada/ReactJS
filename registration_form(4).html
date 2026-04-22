@@ -1,0 +1,99 @@
+<!-- Assignment4: Write ReactJs code to 
+create student Registration Form
+---------------------------------------------- -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>React CDN App</title>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+</head>
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+    function StudentRegistrationForm() {
+        
+        const [firstName, setFirstName] = React.useState('');
+        const [lastName, setLastName] = React.useState('');
+        const [email, setEmail] = React.useState('');
+        const [course, setCourse] = React.useState('');
+        const [isSubmitted, setIsSubmitted] = React.useState(false);
+
+        const handleSubmit = (e) => {
+            e.preventDefault();
+            setIsSubmitted(true);
+        };
+
+        return (
+            <div>
+                <h1>Student Registration Form</h1>
+                
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <label>First Name: </label>
+                        <input 
+                            type="text" name="firstName" 
+                            value={firstName} onChange={(e)=>setFirstName(e.target.value)} 
+                            required />
+                    </div>
+                    <br />
+                    <div>
+                        <label>Last Name: </label>
+                        <input 
+                            type="text" name="lastName" 
+                            value={lastName} onChange={(e)=>setLastName(e.target.value)} 
+                            required />
+                    </div>
+                    <br />
+                    <div>
+                        <label>Email: </label>
+                        <input 
+                            type="email" name="email" 
+                            value={email} onChange={(e)=>setEmail(e.target.value)} 
+                            required />
+                    </div>
+                    <br />
+                    <div>
+                        <label>Course: </label>
+                        <select name="course" value={course} 
+                                onChange={(e)=>setCourse(e.target.value)} required>
+                            <option value="">-- Select a Course --</option>
+                            <option value="Computer Science">Computer Science</option>
+                            <option value="Business Administration">Business Administration</option>
+                            <option value="Mechanical Engineering">Mechanical Engineering</option>
+                            <option value="Graphic Design">Graphic Design</option>
+                        </select>
+                    </div>
+                    <br />
+                    <button type="submit">Register Student</button>
+                </form>
+
+                <hr />
+
+                {isSubmitted && (
+                    <div>
+                        <h2>Registration Successful!</h2>
+                        <p><strong>Name:</strong> {firstName} {lastName}</p>
+                        <p><strong>Email:</strong> {email}</p>
+                        <p><strong>Enrolled Course:</strong> {course}</p>
+                    </div>
+                )}
+            </div>
+        );
+    }
+
+    ReactDOM.render(
+        <StudentRegistrationForm />,
+        document.getElementById("root")
+    );
+
+    </script>
+
+</body>
+</html>

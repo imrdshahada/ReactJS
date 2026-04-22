@@ -1,0 +1,64 @@
+<!-- Assignment7:  Write ReactJs code to Applying Routing
+---------------------------------------------- -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>React Router Example</title>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    
+    <script src="https://unpkg.com/history@5/umd/history.development.js"></script>
+    <script src="https://unpkg.com/react-router@6.3.0/umd/react-router.development.js"></script>
+    <script src="https://unpkg.com/react-router-dom@6.3.0/umd/react-router-dom.development.js"></script>
+</head>
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { BrowserRouter, Routes, Route, Link } = ReactRouterDOM;
+
+        function Home() {
+            return (
+                <div>
+                    <h2>Home Page</h2>
+                    <p>Welcome to the dashboard!</p>
+                </div>
+            );
+        }
+
+        function About() {
+            return (
+                <div>
+                    <h2>About Us</h2>
+                    <p>We are learning React routing.</p>
+                </div>
+            );
+        }
+
+        function App() {
+            return (
+                <BrowserRouter>
+                    <nav>
+                        <Link to="/">Home</Link><br/>
+                        <Link to="/about">About Us</Link>
+                    </nav>
+
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/about" element={<About />} />
+                    </Routes>
+                </BrowserRouter>
+            );
+        }
+
+        ReactDOM.render(
+            <App />,
+            document.getElementById("root")
+        );
+    </script>
+
+</body>
+</html>

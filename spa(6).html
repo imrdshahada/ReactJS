@@ -1,0 +1,75 @@
+<!-- Assignment6:  Write ReactJs code to 
+Create a Single Page Application
+---------------------------------------------- -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>React CDN App</title>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+</head>
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+    function SpaApp() {
+        
+        const [currentPage, setCurrentPage] = React.useState('home');
+        
+        function HomePage() {
+            return(
+            <div>
+                <h2>Home Page</h2>
+                <p>Welcome to our Single Page Application.</p>
+            </div>
+            );
+        }
+
+        function AboutPage (){
+            return(
+            <div>
+                <h2>About Us</h2>
+                <p>We are learning how to change views without reloading the browser.</p>
+            </div>
+            );
+        } 
+
+        function ContactPage(){
+            return(
+            <div>
+                <h2>Contact Us</h2>
+                <p>Send us an email at: hello@reactcdn.com</p>
+            </div>
+            );
+        }
+
+        return (
+            <div>
+                <h1>My React SPA</h1>
+                <nav>
+                    <button onClick={(e) => setCurrentPage('home')}>Home</button>
+                    <button onClick={(e) => setCurrentPage('about')}>About</button>
+                    <button onClick={(e) => setCurrentPage('contact')}>Contact</button>
+                </nav>
+                <hr />
+                {currentPage === 'home' && <HomePage />}
+                {currentPage === 'about' && <AboutPage />}
+                {currentPage === 'contact' && <ContactPage />}
+            </div>
+        );
+    }
+
+    ReactDOM.render(
+        <SpaApp />,
+        document.getElementById("root")
+    );
+
+    </script>
+
+</body>
+</html>

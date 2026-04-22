@@ -1,0 +1,60 @@
+<!-- Assignment1: Write ReactJs code to use 
+all the states in in the created Application
+---------------------------------------------- -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React States</title>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</head>
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        function StateManagerApp(){
+        
+            const [count, setCount] = React.useState(0);
+            const [username, setUsername] = React.useState('');
+
+            function increment() { setCount(count+1); }
+            function decrement() { setCount(count-1); }
+
+            return (
+                <div>
+                    <h1>React CDN State Demo</h1>
+
+                    <div>
+                        <h3>1. Number State</h3>
+                        <p>Current Count: <strong>{count}</strong></p>
+                        <button onClick={increment}>Increment</button>
+                        <button onClick={decrement}>Decrement</button>
+                    </div>
+
+                    <div>
+                        <h3>2. String State</h3>
+                        <input 
+                            type="text" 
+                            placeholder="Enter username" 
+                            value={username} 
+                            onChange={(e) => setUsername(e.target.value)} 
+                        />
+                        <p>Hello, <strong>{username || 'Guest'}</strong>!</p>
+                    </div>
+                
+                </div>
+            );
+        }
+
+        ReactDOM.render(<StateManagerApp/>,document.getElementById("root"));
+  </script>
+
+</body>
+</html>

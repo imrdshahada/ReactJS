@@ -1,0 +1,84 @@
+<!-- Assignment5: Write ReactJs code to 
+create Simple Login Form 
+---------------------------------------------- -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>React CDN App</title>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+</head>
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+    function SimpleLoginForm() {
+        
+        const [username, setUsername] = React.useState('');
+        const [password, setPassword] = React.useState('');
+        const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+
+        const handleSubmit = (e) => {
+            e.preventDefault()
+            if (username == 'admin' && password == '1234') {
+                setIsLoggedIn(true);
+            } else {
+                alert("Wrong Credentials");
+            }
+        };
+
+        const handleLogout = () => {
+            setIsLoggedIn(false);
+            setUsername('');
+            setPassword('');
+        };
+
+        if (isLoggedIn) {
+            return (
+                <div>
+                    <h2>Welcome back, {username}!</h2>
+                    <p>You have successfully logged in.</p>
+                    <button onClick={handleLogout}>Logout</button>
+                </div>
+            );
+        }
+
+        return (
+            <div>
+                <h1>Login Form</h1>
+                
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <label>Username: </label>
+                        <input 
+                            type="text" value={username} required
+                            onChange={(e) => setUsername(e.target.value.trim())} />
+                    </div>
+                    <br />
+                    <div>
+                        <label>Password: </label>
+                        <input 
+                            type="password" value={password} required
+                            onChange={(e) => setPassword(e.target.value.trim())} />
+                    </div>
+                    <br />
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+        );
+    }
+
+    ReactDOM.render(
+        <SimpleLoginForm />,
+        document.getElementById("root")
+    );
+
+    </script>
+
+</body>
+</html>

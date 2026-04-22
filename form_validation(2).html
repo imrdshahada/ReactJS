@@ -1,0 +1,66 @@
+<!-- Assignment2: Write ReactJs code for 
+Client-side form validation
+---------------------------------------------- -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>React CDN App</title>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+</head>
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+    
+        function Validation() {
+    
+            const [password, setPassword] = React.useState("");
+            const [error, setError] = React.useState("");
+            
+            const handleSubmit = (e) => {
+                e.preventDefault();
+                
+                if(password === "") {
+                    setError("Password cannot be empty!");
+                }else if (password.length < 8) {
+                    setError("Password must be at least 8 characters long.");
+                }else {
+                    setError(""); 
+                    alert("Form submitted successfully!");
+                }
+            };
+
+            return (
+                <form onSubmit={handleSubmit}>
+                <label>
+                    Mobile Number:
+                    <input type="text" required minLength="10" maxLength="10" />
+                </label>
+                <br/><br/>
+                <label>
+                    Password:
+                    <input type="password" value={password} 
+                    onChange={(e) => setPassword(e.target.value)} />
+                </label>
+
+                <button type="submit">Submit</button>
+
+                {error && <p style={{ color: 'red' }}>{error}</p>}
+                </form>
+            );
+        }
+
+        ReactDOM.render(
+            <Validation/>,
+            document.getElementById("root")
+        );
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!-- Assignment3: Write ReactJs code for 
+Applying form components
+---------------------------------------------- -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>React CDN App</title>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+</head>
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+    function SimpleFormApp() {
+        
+        const [name, setName] = React.useState('');
+        const [age, setAge] = React.useState('');
+        const [isSubmitted, setIsSubmitted] = React.useState(false);
+
+        const handleSubmit = (e) => {
+            e.preventDefault();
+            setIsSubmitted(true);
+        };
+
+        return (
+            <div>
+                <h1>User Details Form</h1>
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <label>Name: </label>
+                        <input 
+                            type="text" 
+                            value={name} 
+                            onChange={(e) => { setName(e.target.value); setIsSubmitted(false); }} 
+                        />
+                    </div>
+                    <br />
+                    <div>
+                        <label>Age: </label>
+                        <input 
+                            type="number" 
+                            value={age} 
+                            onChange={(e) => { setAge(e.target.value); setIsSubmitted(false); }} 
+                        />
+                    </div>
+                    <br />
+                    <button type="submit">Save</button>
+                </form>
+                <hr />
+                {isSubmitted && (
+                    <div>
+                        <h2>Submitted Data:</h2>
+                        <p><strong>Name:</strong> {name}</p>
+                        <p><strong>Age:</strong> {age}</p>
+                    </div>
+                )}
+            </div>
+        );
+    }
+
+    ReactDOM.render(
+        <SimpleFormApp />,
+        document.getElementById("root")
+    );
+
+    </script>
+
+</body>
+</html>
